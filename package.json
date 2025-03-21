@@ -1,0 +1,46 @@
+{
+  "name": "opennext-better-auth",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "build:prod": "pnpm run opennext:build && wrangler deploy --dry-run --outdir=dist",
+    "opennext:build": "opennextjs-cloudflare",
+    "build:analyze": "ANALYZE=true next build",
+    "start": "next start",
+    "lint": "next lint",
+    "deploy": "pnpm run opennext:build && wrangler deploy",
+    "preview": "pnpm run opennext:build && wrangler dev",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
+  },
+  "dependencies": {
+    "@heroui/react": "2.6.12",
+    "better-auth": "^1.2.4",
+    "kysely": "^0.27.6",
+    "kysely-d1": "^0.3.0",
+    "next": "15.2.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwind-merge": "^2.6.0",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250311.0",
+    "@eslint/eslintrc": "^3",
+    "@next/bundle-analyzer": "^15.1.4",
+    "@opennextjs/cloudflare": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.16",
+    "@types/ms": "^0.7.34",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.2.2",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5",
+    "wrangler": "^3.114.1"
+  },
+  "packageManager": "pnpm@9.12.1+sha512.e5a7e52a4183a02d5931057f7a0dbff9d5e9ce3161e33fa68ae392125b79282a8a8a470a51dfc8a0ed86221442eb2fb57019b0990ed24fab519bf0e1bc5ccfc4"
+}

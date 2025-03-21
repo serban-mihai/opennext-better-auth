@@ -1,0 +1,58 @@
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "opennext-better-auth",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2024-09-26",
+  "compatibility_flags": ["nodejs_compat"],
+  "minify": false,
+  "assets": {
+    "binding": "ASSETS",
+    "directory": ".open-next/assets"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "vars": {
+    "RUNTIME_ENV": "local",
+    "COOKIE_DOMAIN": ".localhost",
+    "BETTER_AUTH_URL": "http://localhost:3000",
+    "BETTER_AUTH_TRUSTED_ORIGINS": "http://localhost:3000"
+  },
+  "d1_databases": [
+    {
+      "binding": "AUTH_DB",
+      "database_name": "test-db-local",
+      "database_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+      // "migrations_dir": "./src/lib/auth/migrations"
+    }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "NEXT_CACHE_WORKERS_KV",
+      "id": "c6f2b077e0a34a84b3598558eb833055"
+    }
+  ],
+  "env": {
+    "production": {
+      "minify": true,
+      "vars": {
+        "RUNTIME_ENV": "remote",
+        "COOKIE_DOMAIN": ".localhost",
+        "BETTER_AUTH_URL": "http://localhost:3000",
+        "BETTER_AUTH_TRUSTED_ORIGINS": "http://localhost:3000"
+      },
+      "d1_databases": [
+        {
+          "binding": "AUTH_DB",
+          "database_name": "test-db-production",
+          "database_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+          // "migrations_dir": "./src/lib/auth/migrations"
+        }
+      ]
+    }
+  }
+}
